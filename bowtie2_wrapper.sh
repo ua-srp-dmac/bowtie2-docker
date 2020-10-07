@@ -12,8 +12,16 @@ EOF
     exit 0
 }
 
-while getopts "f:hr:n:" opt; do
+while getopts "p:s:f:hr:n:" opt; do
   case ${opt} in
+    s)
+     output_file=$OPTARG
+     echo "$output_file"
+      ;;
+    p)
+     num_threads=$OPTARG
+     echo "$num_threads"
+      ;;
     f)
      fastq_file=$OPTARG
      echo "$fastq_file"
@@ -41,4 +49,4 @@ while getopts "f:hr:n:" opt; do
   esac
 done
 
-bowtie2 -x ${ref_genome_folder}/${ref_genome_name} -U $fastq_file -S ${fastq_file}.sam
+bowtie2 -x ${ref_genome_folder}/${ref_genome_name} -U $fastq_file -S ${output_file}.sam -p $num_threads
