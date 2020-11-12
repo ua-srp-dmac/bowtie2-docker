@@ -27,7 +27,7 @@ while getopts "p:t:s:f:hr:n:" opt; do
       then
         fastq_files=$OPTARG
       else
-        fastq_files=$read_files','$OPTARG
+        fastq_files=$fastq_files','$OPTARG
       fi
       echo "$fastq_files"
       ;;
